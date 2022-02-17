@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="StockIndex">
+  <DataContextMoniker Name="/StockIndexDataContext" />
+  <nestedChildShapes>
+    <classShape Id="662f3c2a-0e34-4c59-b506-c73fecde8ccb" absoluteBounds="0.75, 0.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/StockIndexDataContext/tblCompany" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea588f02-2ff2-42c8-9d80-ddb2613e1990" absoluteBounds="0.765, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="089ee869-942f-4706-ac7c-dbbfe98f79ce" absoluteBounds="5.125, 1.375, 2, 1.3862939453125">
+      <DataClassMoniker Name="/StockIndexDataContext/tblStockData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a713d8ce-c5c2-44fd-9afe-b04c7dce849f" absoluteBounds="5.14, 1.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 2.01044840494792); (5.125 : 2.01044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StockIndexDataContext/tblCompany/tblCompany_tblStockData" />
+      <nodes>
+        <classShapeMoniker Id="662f3c2a-0e34-4c59-b506-c73fecde8ccb" />
+        <classShapeMoniker Id="089ee869-942f-4706-ac7c-dbbfe98f79ce" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="49297e1f-94c4-49d7-a5bc-1b8e1d01ac72" absoluteBounds="5.625, 3.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/StockIndexDataContext/tblStockSearchHit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="90d4397d-df6f-42cf-b2e3-e991515a49ea" absoluteBounds="5.64, 4.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 2.64589680989583); (1.75 : 4.31814697265625); (5.625 : 4.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/StockIndexDataContext/tblCompany/tblCompany_tblStockSearchHit" />
+      <nodes>
+        <classShapeMoniker Id="662f3c2a-0e34-4c59-b506-c73fecde8ccb" />
+        <classShapeMoniker Id="49297e1f-94c4-49d7-a5bc-1b8e1d01ac72" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

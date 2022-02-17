@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StockIndexer" Class="StockIndexDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=BALASURIYA-NB\SQLEXPRESS;Initial Catalog=StockIndexer;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StockIndexerConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblCompany" Member="tblCompanies">
+    <Type Name="tblCompany" Id="ID1">
+      <Column Name="Symbol" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MarketCap" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Sector" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Industry" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="tblCompany_tblStockData" Member="tblStockDatas" ThisKey="Symbol" OtherKey="Symbol" Type="tblStockData" />
+      <Association Name="tblCompany_tblStockSearchHit" Member="tblStockSearchHits" ThisKey="Symbol" OtherKey="Symbol" Type="tblStockSearchHit" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblStockData" Member="tblStockDatas">
+    <Type Name="tblStockData">
+      <Column Name="Symbol" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StockTime" Type="System.Decimal" DbType="Decimal(18,0) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StockValue" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Association Name="tblCompany_tblStockData" Member="tblCompany" ThisKey="Symbol" OtherKey="Symbol" Type="tblCompany" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblStockSearchHits" Member="tblStockSearchHits">
+    <Type Name="tblStockSearchHit">
+      <Column Name="Symbol" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CurrentDate" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HitCount" Type="System.Decimal" DbType="Decimal(9,0)" CanBeNull="true" />
+      <Association Name="tblCompany_tblStockSearchHit" Member="tblCompany" ThisKey="Symbol" OtherKey="Symbol" Type="tblCompany" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetAllCompanyDetails" Method="GetAllCompanyDetails">
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.GetCompanyDetailsByName" Method="GetCompanyDetailsByName">
+    <Parameter Name="parmName" Type="System.String" DbType="VarChar(255)" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.GetCompanyDetailsBySymbol" Method="GetCompanyDetailsBySymbol">
+    <Parameter Name="parmSymbol" Type="System.String" DbType="VarChar(10)" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="dbo.GetCompanyDetailsBySymbolOrName" Method="GetCompanyDetailsBySymbolOrName">
+    <Parameter Name="parmFilter" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="GetCompanyDetailsBySymbolOrNameResult1">
+      <Column Name="Symbol" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MarketCap" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Sector" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Industry" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MarketValue" Type="System.Decimal" DbType="Decimal(3,3) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetHighPerformingStockInfo" Method="GetHighPerformingStockInfo">
+    <Parameter Name="parmDateRange" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetHighPerformingStockInfoResult">
+      <Column Name="Symbol" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="stockfluctuate" Type="System.Decimal" DbType="Decimal(11,2)" CanBeNull="true" />
+      <Column Name="avgStockValue" Type="System.Decimal" DbType="Decimal(38,6)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>
